@@ -1,6 +1,6 @@
 from typing import Union
 from fastapi import FastAPI
-from models.person import Person
+from schemas.person import Person
 
 app = FastAPI()
 

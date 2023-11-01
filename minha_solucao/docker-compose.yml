@@ -5,6 +5,7 @@ services:
     build: 
       context: .
       dockerfile: ./Dockerfile
+    network_mode: "host"
     ports:
       - 8000:8000
     command:
@@ -12,4 +13,25 @@ services:
       - main:app 
       - "--host"
       - "0.0.0.0"
-      - "--reload"      
+      - "--reload"
+    depends_on:
+      - postgres
+      
+  postgres:
+    image: postgres:16
+    network_mode: "host"
+    ports:
+      - "15432:5432"
+    environment:
+      POSTGRES_PASSWORD: "appdb2023!"
+
+  pgadmin:
+    image: dpage/pgadmin4
+    network_mode: "host"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "daniel@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "daniel2023!"
+    ports:
+      - "16543:80"
+    depends_on:
+      - postgres
