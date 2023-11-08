@@ -3,7 +3,7 @@ from typing_extensions import Annotated
 from datetime import date,datetime
 from typing import Union
 
-class Person(BaseModel):
+class PersonSchema(BaseModel):
     apelido: Annotated[str,StringConstraints(max_length=32)]
     nome: Annotated[str, StringConstraints(max_length=100)]
     nascimento: date
@@ -13,3 +13,6 @@ class Person(BaseModel):
     @classmethod
     def check_date_format(cls, d: str) -> date:
         return datetime.strptime(d, "%Y-%m-%d").date()
+    
+    class Config:
+        from_attributes = True

@@ -1,10 +1,13 @@
-from sqlalchemy import Column, Integer, String, Date, ARRAY
-from ..database import Base
+from sqlalchemy import Column, String, Date, ARRAY
+from configs.database import Base
+from sqlalchemy.dialects.postgresql import UUID
+import uuid
 
-class Person(Base):
+class PersonModel(Base):
     __tablename__ = "persons"
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(UUID(as_uuid=True), primary_key=True, index=True, default=uuid.uuid4)
     apelido = Column(String, unique=True)
     nome = Column(String)
     nascimento = Column(Date)
-    stack = Column(ARRAY(Integer),nullable=True)
+    stack = Column(ARRAY(String),nullable=True)
+    concatenado = Column(String)
