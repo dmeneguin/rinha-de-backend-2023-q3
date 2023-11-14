@@ -9,10 +9,10 @@ class PersonSchema(BaseModel):
     nascimento: date
     stack: Union[list[Annotated[str, StringConstraints(max_length=32)]], None]
 
-    @field_validator('nascimento', mode='before')
-    @classmethod
-    def check_date_format(cls, d: str) -> date:
-        return datetime.strptime(d, "%Y-%m-%d").date()
+    # @field_validator('nascimento', mode='before')
+    # @classmethod
+    # def check_date_format(cls, d: str) -> date:
+    #     return datetime.strptime(d, "%Y-%m-%d").date()
     
     class Config:
         from_attributes = True

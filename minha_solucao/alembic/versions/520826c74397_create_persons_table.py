@@ -23,11 +23,11 @@ def upgrade() -> None:
     op.create_table(
         'persons',
         sa.Column('id',sa.dialects.postgresql.UUID(as_uuid=True), primary_key=True, index=True, default=uuid.uuid4),
-        sa.Column('apelido',sa.String, unique=True),
+        sa.Column('apelido',sa.String, unique=True, index=True),
         sa.Column('nome',sa.String),
         sa.Column('nascimento',sa.Date),
         sa.Column('stack',sa.ARRAY(sa.String),nullable=True),
-        sa.Column('concatenado',sa.String),
+        sa.Column('concatenado',sa.String, index=True),
     )
 
 def downgrade() -> None:
