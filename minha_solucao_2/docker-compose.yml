@@ -1,0 +1,8 @@
+version: '3.5'
+services:
+  redis:
+    image: redis:7.2.3-alpine3.18
+    command: redis-server --save "" --appendonly no --maxclients 20000
+    ports:
+      - 6379:6379
+    network_mode: host
